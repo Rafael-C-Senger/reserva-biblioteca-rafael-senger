@@ -13,7 +13,7 @@ export default function App() {
         <article className="book-card">
           <div>
             <h2>Dom Casmurro</h2>
-            <p>Machado de Assis</p>
+            <p>Machado de Assis </p>
           </div>
           <span className="badge badge-ok">Disponível</span>
         </article>
