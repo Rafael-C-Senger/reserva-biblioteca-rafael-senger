@@ -1,12 +1,20 @@
 import "./App.css";
 import { books } from "./data/books";
+import { useState } from "react";
 import BookList from "./components/BookList";
 import Panel from "./components/Panel";
 
 export default function App() {
+  const [bookList, setBookList] = useState(books);
 
-  function handleReserve(bookId) {
-    window.alert(`Reservando livro com ID: ${bookId}`);
+  function handleToggleReserve(bookId) {
+    setBookList((currentBooks) =>
+      currentBooks.map((book) =>
+        book.id === bookId
+          ? { ...book, available: !book.available }
+          : book
+      ),
+    );
   }
 
   return (
@@ -19,8 +27,8 @@ export default function App() {
 
       <Panel title="Acervo">
         <BookList 
-          books={books} 
-          onReserve={handleReserve}
+          books={bookList} 
+          onReserve={handleToggleReserve}
         />
       </Panel>
     </main>

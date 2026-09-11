@@ -12,15 +12,16 @@ export default function BookCard({
         <h2>{title}</h2>
         <p>Autor: {author}</p>
         <p>Ano: {year}</p>
-        
+      </div>
+
         <span className={`badge ${available ? "badge-ok" : "badge-off"}`}>
           {available ? "Disponível" : "Reservado"}
         </span>
 
         <button type="button" onClick={() => onReserve(id)}>
-            {available ? "Reservar" : "Indisponível"}
+            {available ? "Reservar" : "Devolver"}
         </button>
-      </div>
+      
     </article>
   );
 }
