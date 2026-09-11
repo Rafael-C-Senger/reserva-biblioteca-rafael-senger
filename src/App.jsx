@@ -8,6 +8,14 @@ import BookForm from "./components/BookForm";
 export default function App() {
   const [bookList, setBookList] = useState(books);
 
+  const availableCount = bookList.filter(
+    (book) => book.available,
+  ).length;
+
+  function handleAddBook(newBook) {
+    setBookList((currentBooks) => [...currentBooks, newBook]);
+  }
+
   function handleToggleReserve(bookId) {
     setBookList((currentBooks) =>
       currentBooks.map((book) =>
@@ -23,13 +31,14 @@ export default function App() {
       <header className="hero">
         <p className="eyebrow">BIBLIOTECA ITEAM</p>
         <h1>Reserva de livros do acervo.</h1>
-        <p>Consulte a disponibilidade e reserve o que precisar.</p>
+        <p>
+          {availableCount} de {bookList.length} livros disponíveis.
+        </p>
       </header>
+
       <Panel title="Adicionar livro">
         <BookForm 
-          onAddBook={(newBook) => 
-            setBookList((currentBooks) => 
-              [...currentBooks, newBook])}
+          onAddBook={handleAddBook}
         />
       </Panel>
       <Panel title="Acervo">
